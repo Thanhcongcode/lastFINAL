@@ -1,0 +1,62 @@
+﻿@using do_an_cuoi_ky.Models
+@model List<MatHangMua>
+@{
+    ViewBag.Title = "HienThiGioHang";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<style>
+    th{text-align:center}
+</style>
+<h1 style="text-align:center ;color:blanchedalmond">THÔNG TIN GIỎ HÀNG</h1>
+<table class="table table-bordered" style="margin: 10px auto;width:80%">
+    <thead>
+        <tr>
+            <th><h4 style="color:white">Mã Mô Hình</h4></th>
+            <th><h4 style="color:white">Tên Mô Hình</h4></th>
+            <th><h4 style="color:white">Ảnh Minh Hoạ</h4></th>
+            <th><h4 style="color:white">Số lượng</h4></th>
+            <th><h4 style="color:white">Đơn giá</h4></th>
+            <th><h4 style="color:white">Thành tiền</h4></th>
+            <th><h4 style="color:white">Chi Tiết</h4></th>
+
+            <th><h4 style="color:white">Xoá</h4></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mohinh in Model)
+        {
+            <tr>
+                <td><h3 style="color:blanchedalmond">@mohinh.MaMH</h3></td>
+                <td><h3 style="color:blanchedalmond">@mohinh.TenMH</h3></td>
+                <td><h3 style="color:blanchedalmond"><img src="~/Asset/img/@mohinh.AnhMinhHoa" /></h3></td>
+                @using (Html.BeginForm("CapNhatMatHang", "GioHang", new { MaSP = mohinh.MaMH }))
+                {
+                    <td>
+                        <input type="number" min="1" value="@mohinh.SoLuong" name="SoLuong" />
+                    </td>
+                }
+                <td><h3 style="color:blanchedalmond">@mohinh.DonGia</h3></td>
+                <td><h3 style="color:blanchedalmond">@mohinh.ThanhTien()</h3></td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Details", "Shop", new { id = mohinh.MaMH }, new { @class = "btn btn-success" })
+                </td>
+
+                <td>
+                    @Html.ActionLink("Xóa hàng", "XoaMatHang", "GioHang", new { MaSP = mohinh.MaMH }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+        <tr style="font-weight:bold; text-align:right; color:red;">
+            <td colspan="5"><h3>Tổng số lượng: @ViewBag.TongSL</h3></td>
+            <td colspan="1"><h3>Tổng tiền: @ViewBag.TongTien</h3></td>
+        </tr>
+        <tr style="font-weight:bold; text-align:center;">
+            <td colspan="9" style="color:deeppink;font-weight:bold">
+
+                <h2>@Html.ActionLink("ĐẶT HÀNG", "DatHang", null, new { @class = "btn btn- primary" })</h2> 
+
+            </td>
+        </tr>
+    </tbody>
+</table>

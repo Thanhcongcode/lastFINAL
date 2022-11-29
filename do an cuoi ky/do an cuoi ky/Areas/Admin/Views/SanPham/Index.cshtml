@@ -1,0 +1,64 @@
+﻿
+@model IEnumerable<do_an_cuoi_ky.Models.DONDATHANG>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayoutAdmin.cshtml";
+}
+<style>
+    h2 {
+        color: #4e73df;
+        text-align:center;
+        font-weight:900;
+    }
+    th {
+        font-weight: 700;
+        text-align: center;
+        color: #4e73df;
+    }
+</style>
+
+<h2>LỊCH SỬ MUA HÀNG</h2>
+<div class="card-body" style="margin:10px auto;">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Mã Đơn Hàng</th>
+                    <th>Mã Khách Hàng</th>
+                    <th>Ngày Đặt Hàng</th>
+                    <th>Giá</th>
+                    <th>Đã Giao</th>
+                    <th>Ngày Giao Hàng</th>
+                    <th>Tên Người Nhận</th>
+                    <th>Địa Chỉ</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Hình Thức Thanh Toán</th>
+                    <th>Hình Thức Giao Hàng</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td> @Html.DisplayFor(modelItem => item.MaDH) </td>
+                        <td> @Html.DisplayFor(modelItem => item.MaKH)</td>
+                        <td> @Html.DisplayFor(modelItem => item.NgayDatHang) </td>
+                        <td> @Html.DisplayFor(modelItem => item.TriGia) </td>
+                        <td> @Html.DisplayFor(modelItem => item.DaGiao) </td>
+                        <td> @Html.DisplayFor(modelitem => item.NgayGiaoHang)</td>
+                        <td> @Html.DisplayFor(modelItem => item.TenNguoiNhan)</td>
+                        <td> @Html.DisplayFor(modelItem => item.DiaChiNhan)</td>
+                        <td> @Html.DisplayFor(modelItem => item.SDTNhan)</td>
+                        <td> @Html.DisplayFor(modelItem => item.HTThanhToan) </td>
+                        <td> @Html.DisplayFor(modelItem => item.HTGiaoHang) </td>
+                        
+
+                    </tr>
+                </tbody>
+            }
+
+        </table>
+    </div>
+</div>
+
+
